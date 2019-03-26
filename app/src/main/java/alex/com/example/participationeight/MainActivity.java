@@ -1,6 +1,8 @@
 package alex.com.example.participationeight;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.Settings;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -84,6 +86,8 @@ public class MainActivity extends AppCompatActivity
             Snackbar.make(getWindow().getDecorView(), "Delete study mates not implemented", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
+
+
         if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingsIntent);
@@ -124,7 +128,43 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+            //Tells the user the following text
+        } else if (id == R.id.nav_add){
+            Snackbar.make(getWindow().getDecorView(), "Adding study mates is not available yet", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            //Tells the user the following text
+        }  else if (id == R.id.nav_delete){
+            Snackbar.make(getWindow().getDecorView(), "Deleting study mates is not available yet", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        // Opens the settings menu
+        } else if (id == R.id.nav_settings) {
+            Intent settingsIntent = new Intent(Settings.ACTION_SETTINGS);
+            if (settingsIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(settingsIntent);
+            }
+        //Email navigation bar. Sends an email with the prewritten subject and body
+        } else if (id == R.id.nav_email) {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setType("*/*");
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Hey Study Partner");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Do you want to study today?");
+            if(emailIntent.resolveActivity(getPackageManager()) != null)
+            {
+                startActivity(emailIntent);
+            }
+        // SMS navigation bar. Send a text message with tht specified body. All the user needs to do is to enter the phone number.
+        } else if (id == R.id.nav_sms) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond
+            intent.putExtra("sms_body", "Hey study partner");
+
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }
+
         }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

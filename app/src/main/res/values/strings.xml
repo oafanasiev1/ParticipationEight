@@ -11,4 +11,8 @@
     <string name="action_email">Email</string>
     <string name="action_sms">SMS</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="nav_slidelshow">Slideshow</string>
+    <string name="nav_gallery">Gallery</string>
+    <string name="nav_camera">Camera</string>
+    <string name="nav_manage">Tools</string>
 </resources>
